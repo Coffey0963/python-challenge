@@ -2,7 +2,7 @@
 import os
 import csv
 
-#Creating the variables out of the CSV file
+#Creating the variables out of the CSV file blah
 budget_data = os.path.join("Resources", "budget_data.csv")
 
 total_months = 0
