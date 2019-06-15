@@ -1,8 +1,8 @@
-#Importing the necessary modules/libraries
+#Importing the OS and CSV
 import os
 import csv
 
-#Creating an object out of the CSV file
+#Creating the variables out of the CSV file
 budget_data = os.path.join("Resources", "budget_data.csv")
 
 total_months = 0
@@ -12,25 +12,25 @@ change = 0
 dates = []
 profits = []
 
-#Opening and reading the CSV file
+#Opening the CSV file
 with open(budget_data, newline = "") as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
 
-    #Reading the header row
+    #Read the header row
     csv_header = next(csvreader)
 
-    #Reading the first row (so that we track the changes properly)
+    #Read the first row 
     first_row = next(csvreader)
     total_months += 1
     total_pl += int(first_row[1])
     value = int(first_row[1])
     
-    #Going through each row of data after the header & first row 
+    #Going through each row of the data 
     for row in csvreader:
-        # Keeping track of the dates
+        # Track of the dates
         dates.append(row[0])
         
-        # Calculate the change, then add it to list of changes
+        # Calculate the change
         change = int(row[1])-value
         profits.append(change)
         value = int(row[1])
@@ -38,7 +38,7 @@ with open(budget_data, newline = "") as csvfile:
         #Total number of months
         total_months += 1
 
-        #Total net amount of "Profit/Losses over entire period"
+        #Total net amount of of Profit/Losses over the entire period
         total_pl = total_pl + int(row[1])
 
     #Greatest increase in profits
@@ -51,7 +51,7 @@ with open(budget_data, newline = "") as csvfile:
     worst_index = profits.index(greatest_decrease)
     worst_date = dates[worst_index]
 
-    #Average change in "Profit/Losses between months over entire period"
+    #Average change in the Profit/Losses between each months over the period
     avg_change = sum(profits)/len(profits)
     
 
